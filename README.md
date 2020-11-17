@@ -1,2 +1,3 @@
 # @thytanium/react-components
-Renderless components for React with common utilities
+
+A bunch of useful renderable and renderless React components and hooks
