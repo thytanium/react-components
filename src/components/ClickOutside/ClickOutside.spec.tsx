@@ -12,7 +12,7 @@ describe('ClickOutside component and hook', () => {
   });
 
   const Component = (): React.ReactElement => (
-    <ClickOutside onClick={onClick}>
+    <ClickOutside<HTMLDivElement> onClick={onClick}>
       {React.useCallback(
         ({ ref }): React.ReactElement => (
           <div ref={ref}>My Content</div>

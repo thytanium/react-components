@@ -2,7 +2,7 @@ import * as React from 'react';
 import useClickOutside from '../../hooks/useClickOutside';
 
 interface ClickOutsideParams<T> {
-  ref: React.RefObject<T | undefined>;
+  ref: React.RefObject<T>;
 }
 
 interface ClickOutsideProps<T extends HTMLElement> {

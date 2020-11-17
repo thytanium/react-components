@@ -2,8 +2,8 @@ import { RefObject, useCallback, useEffect, useRef } from 'react';
 
 export default function useClickOutside<T extends HTMLElement>(
   onClick: () => void,
-): RefObject<T | undefined> {
-  const ref = useRef<T>();
+): RefObject<T> {
+  const ref = useRef<T>(null);
 
   const handleClick = useCallback(
     (event: Event): void => {
