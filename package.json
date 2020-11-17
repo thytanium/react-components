@@ -1,7 +1,7 @@
 {
     "name": "@thytanium/react-components",
     "version": "0.1.0",
-    "description": "A bunch of useful renderable and renderless React components and hooks",
+    "description": "A bunch of useful React components and hooks",
     "main": "dist/index.js",
     "scripts": {
         "build": "tsc -p tsconfig.build.json",
