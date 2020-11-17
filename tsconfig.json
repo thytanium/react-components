@@ -9,6 +9,5 @@
         "removeComments": true,
         "strict": true
     },
-    "include": ["src/**/*"],
-    "exclude": ["src/**/*.spec.tsx"]
+    "include": ["src/**/*"]
 }

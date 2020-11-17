@@ -4,7 +4,7 @@
     "description": "A bunch of useful renderable and renderless React components and hooks",
     "main": "dist/index.js",
     "scripts": {
-        "build": "tsc",
+        "build": "tsc -p tsconfig.build.json",
         "test": "jest"
     },
     "repository": {
@@ -28,6 +28,7 @@
         "@testing-library/react": "^11.1.2",
         "@types/jest": "^26.0.15",
         "@types/react": "^16.9.56",
+        "@types/react-dom": "^16.9.9",
         "jest": "^26.6.3",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
