@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export default function useLocalStorage<T>(
   key: string,
   initialValue: T,
-): [T, (value: T) => void] {
+): [T, (value: T | ((value: T) => T)) => void] {
   const [storedValue, setStoredValue] = useState<T>(
     (): T => {
       try {
@@ -16,16 +16,19 @@ export default function useLocalStorage<T>(
     },
   );
 
-  function setValue(value: T | ((value: T) => T)): void {
-    try {
-      const valueToStore =
-        value instanceof Function ? value(storedValue) : value;
-      setStoredValue(valueToStore);
-      window.localStorage.setItem(key, JSON.stringify(valueToStore));
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  const setValue = useCallback(
+    (value: T | ((value: T) => T)): void => {
+      try {
+        const valueToStore =
+          value instanceof Function ? value(storedValue) : value;
+        setStoredValue(valueToStore);
+        window.localStorage.setItem(key, JSON.stringify(valueToStore));
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    [storedValue],
+  );
 
   return [storedValue, setValue];
 }
