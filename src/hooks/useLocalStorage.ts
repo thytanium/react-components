@@ -3,14 +3,15 @@ import { useCallback, useState } from 'react';
 export default function useLocalStorage<T>(
   key: string,
   initialValue: T,
-): [T, (value: T | ((value: T) => T)) => void] {
+): [T, (value: T | ((value: T) => T)) => void, Error | null] {
+  const [error, setError] = useState<Error | null>(null);
   const [storedValue, setStoredValue] = useState<T>(
     (): T => {
       try {
         const item = window.localStorage.getItem(key);
         return item ? JSON.parse(item) : initialValue;
       } catch (err) {
-        console.log(err);
+        setError(err);
         return initialValue;
       }
     },
@@ -24,11 +25,11 @@ export default function useLocalStorage<T>(
         setStoredValue(valueToStore);
         window.localStorage.setItem(key, JSON.stringify(valueToStore));
       } catch (err) {
-        console.log(err);
+        setError(err);
       }
     },
     [storedValue],
   );
 
-  return [storedValue, setValue];
+  return [storedValue, setValue, error];
 }

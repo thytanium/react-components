@@ -25,7 +25,7 @@ describe('Button', () => {
   it('renders a right component', () => {
     const RightComponent = (): React.ReactElement => <span>Right</span>;
     const { getByText } = render(
-      <Button leftComponent={RightComponent}>{buttonText}</Button>,
+      <Button rightComponent={RightComponent}>{buttonText}</Button>,
     );
 
     expect(getByText('Right')).toBeInTheDocument();
@@ -33,7 +33,7 @@ describe('Button', () => {
 
   it('renders a right node', () => {
     const { getByText } = render(
-      <Button leftNode={<span>Right</span>}>{buttonText}</Button>,
+      <Button rightNode={<span>Right</span>}>{buttonText}</Button>,
     );
 
     expect(getByText('Right')).toBeInTheDocument();

@@ -1,34 +1,31 @@
 import * as React from 'react';
 import { SideProps } from '../../types';
 
-export interface ButtonProps extends SideProps {
-  children: React.ReactNode;
-  className?: string;
-  innerRef?: React.Ref<HTMLButtonElement>;
+export interface ButtonProps
+  extends SideProps,
+    React.DetailedHTMLProps<
+      React.ButtonHTMLAttributes<HTMLButtonElement>,
+      HTMLButtonElement
+    > {
   isDisabled?: boolean;
-  onClick?: (event?: React.MouseEvent<HTMLButtonElement>) => void;
-  type?: 'button' | 'submit';
 }
 
 export default function Button({
   children,
-  className,
-  innerRef,
-  isDisabled,
+  isDisabled = false,
   leftComponent: LeftComponent,
   leftNode,
-  onClick,
   rightComponent: RightComponent,
   rightNode,
-  type,
+  ...props
 }: ButtonProps): React.ReactElement {
   return (
     <button
-      className={className}
+      {...(props as React.DetailedHTMLProps<
+        React.ButtonHTMLAttributes<HTMLButtonElement>,
+        HTMLButtonElement
+      >)}
       disabled={isDisabled}
-      onClick={onClick}
-      ref={innerRef}
-      type={type}
     >
       {LeftComponent ? <LeftComponent /> : leftNode}
       {children}
@@ -36,9 +33,3 @@ export default function Button({
     </button>
   );
 }
-
-Button.defaultProps = {
-  isDisabled: false,
-  onClick: undefined,
-  type: 'button',
-};
