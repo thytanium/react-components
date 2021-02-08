@@ -1,8 +1,12 @@
 import { ElementType, ReactNode } from 'react';
 
-export type SideProps = {
-  leftComponent?: ElementType;
-  leftNode?: ReactNode;
-  rightComponent?: ElementType;
-  rightNode?: ReactNode;
+export type Appearance = 'default' | 'minimal';
+
+export type BeforeAfterProps = {
+  afterComponent?: ElementType;
+  afterNode?: ReactNode;
+  beforeComponent?: ElementType;
+  beforeNode?: ReactNode;
 };
+
+export type Intent = 'none' | 'primary' | 'success' | 'warning' | 'danger';

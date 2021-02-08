@@ -1,22 +1,38 @@
 import * as React from 'react';
-import { SideProps } from '../../types';
+import * as classNames from 'classnames';
+import { Appearance, BeforeAfterProps, Intent } from '../../types';
+
+const appearanceClassMap: Record<Appearance, string> = {
+  default: '',
+  minimal: 'btn--minimal',
+};
+
+const intentClassMap: Record<Intent, string> = {
+  none: '',
+  primary: 'btn--primary',
+  success: 'btn--success',
+  warning: 'btn--warning',
+  danger: 'btn--danger',
+};
 
 export interface ButtonProps
-  extends SideProps,
+  extends BeforeAfterProps,
     React.DetailedHTMLProps<
       React.ButtonHTMLAttributes<HTMLButtonElement>,
       HTMLButtonElement
     > {
-  isDisabled?: boolean;
+  appearance?: Appearance;
+  intent?: Intent;
 }
 
 export default function Button({
+  afterComponent: AfterComponent,
+  afterNode,
+  beforeComponent: BeforeComponent,
+  beforeNode,
   children,
-  isDisabled = false,
-  leftComponent: LeftComponent,
-  leftNode,
-  rightComponent: RightComponent,
-  rightNode,
+  appearance = 'default',
+  intent = 'none',
   ...props
 }: ButtonProps): React.ReactElement {
   return (
@@ -25,11 +41,15 @@ export default function Button({
         React.ButtonHTMLAttributes<HTMLButtonElement>,
         HTMLButtonElement
       >)}
-      disabled={isDisabled}
+      className={classNames(
+        'btn',
+        appearanceClassMap[appearance],
+        intentClassMap[intent],
+      )}
     >
-      {LeftComponent ? <LeftComponent /> : leftNode}
+      {BeforeComponent ? <BeforeComponent /> : beforeNode}
       {children}
-      {RightComponent ? <RightComponent /> : rightNode}
+      {AfterComponent ? <AfterComponent /> : afterNode}
     </button>
   );
 }

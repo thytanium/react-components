@@ -5,37 +5,37 @@ import Button from './Button';
 describe('Button', () => {
   const buttonText = 'Button Test Text';
 
-  it('renders a left component', () => {
-    const LeftComponent = (): React.ReactElement => <span>Left</span>;
+  it('renders a before component', () => {
+    const BeforeComponent = (): React.ReactElement => <span>Before</span>;
     const { getByText } = render(
-      <Button leftComponent={LeftComponent}>{buttonText}</Button>,
+      <Button beforeComponent={BeforeComponent}>{buttonText}</Button>,
     );
 
-    expect(getByText('Left')).toBeInTheDocument();
+    expect(getByText('Before')).toBeInTheDocument();
   });
 
-  it('renders a left node', () => {
+  it('renders a before node', () => {
     const { getByText } = render(
-      <Button leftNode={<span>Left</span>}>{buttonText}</Button>,
+      <Button beforeNode={<span>Before</span>}>{buttonText}</Button>,
     );
 
-    expect(getByText('Left')).toBeInTheDocument();
+    expect(getByText('Before')).toBeInTheDocument();
   });
 
-  it('renders a right component', () => {
-    const RightComponent = (): React.ReactElement => <span>Right</span>;
+  it('renders an after component', () => {
+    const AfterComponent = (): React.ReactElement => <span>After</span>;
     const { getByText } = render(
-      <Button rightComponent={RightComponent}>{buttonText}</Button>,
+      <Button afterComponent={AfterComponent}>{buttonText}</Button>,
     );
 
-    expect(getByText('Right')).toBeInTheDocument();
+    expect(getByText('After')).toBeInTheDocument();
   });
 
-  it('renders a right node', () => {
+  it('renders an after node', () => {
     const { getByText } = render(
-      <Button rightNode={<span>Right</span>}>{buttonText}</Button>,
+      <Button afterNode={<span>After</span>}>{buttonText}</Button>,
     );
 
-    expect(getByText('Right')).toBeInTheDocument();
+    expect(getByText('After')).toBeInTheDocument();
   });
 });
