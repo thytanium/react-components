@@ -1,5 +1,5 @@
 import * as React from 'react';
-import useClickOutside from '../../hooks/useClickOutside';
+import useOutsideClick from '../../hooks/useOutsideClick';
 
 interface ClickOutsideParams<T> {
   ref: React.RefObject<T>;
@@ -14,6 +14,6 @@ export default function ClickOutside<T extends HTMLElement>({
   children,
   onClick,
 }: ClickOutsideProps<T>): React.ReactElement {
-  const ref = useClickOutside<T>(onClick);
+  const ref = useOutsideClick<T>(onClick);
   return children({ ref });
 }
