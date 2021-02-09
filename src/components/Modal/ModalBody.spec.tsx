@@ -2,7 +2,7 @@ import * as React from 'react';
 import { render } from '@testing-library/react';
 import ModalBody from './ModalBody';
 
-const FIXED_HEIGHT_CLASS_NAME = 'modal-body--fixed-height';
+const FIXED_HEIGHT_CLASS_NAME = 'modal-body--has-fixed-height';
 
 describe('ModalBody', () => {
   it('shows inner content', () => {

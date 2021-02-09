@@ -9,4 +9,9 @@ export type BeforeAfterProps = {
   beforeNode?: ReactNode;
 };
 
+export type IconProps = {
+  className?: string;
+  size?: number;
+};
+
 export type Intent = 'none' | 'primary' | 'success' | 'warning' | 'danger';

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import CloseIcon from '../Icons/CloseIcon';
 
 interface ModalHeaderProps {
   children?: React.ReactNode;
@@ -18,21 +19,7 @@ export default function ModalHeader({
           onClick={close}
           data-testid="t-modal-header__close"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="feather feather-x"
-          >
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
+          <CloseIcon />
         </button>
       )}
     </div>

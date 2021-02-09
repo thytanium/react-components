@@ -1,9 +1,10 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 import { Appearance, BeforeAfterProps, Intent } from '../../types';
+import LoadingIcon from '../Icons/LoadingIcon';
 
 const appearanceClassMap: Record<Appearance, string> = {
-  default: '',
+  default: 'btn--default',
   minimal: 'btn--minimal',
 };
 
@@ -22,7 +23,9 @@ export interface ButtonProps
       HTMLButtonElement
     > {
   appearance?: Appearance;
+  isLoading?: boolean;
   intent?: Intent;
+  loadingComponent?: React.ElementType;
 }
 
 export default function Button({
@@ -32,9 +35,15 @@ export default function Button({
   beforeNode,
   children,
   appearance = 'default',
+  isLoading = false,
   intent = 'none',
+  loadingComponent: LoadingComponent,
   ...props
 }: ButtonProps): React.ReactElement {
+  if (isLoading) {
+    BeforeComponent = LoadingComponent || LoadingIcon;
+  }
+
   return (
     <button
       {...(props as React.DetailedHTMLProps<
@@ -43,9 +52,17 @@ export default function Button({
       >)}
       className={classNames(
         'btn',
+        {
+          'btn--has-icon':
+            BeforeComponent !== undefined ||
+            beforeNode !== undefined ||
+            AfterComponent !== undefined ||
+            afterNode !== undefined,
+        },
         appearanceClassMap[appearance],
         intentClassMap[intent],
       )}
+      disabled={isLoading || props.disabled}
     >
       {BeforeComponent ? <BeforeComponent /> : beforeNode}
       {children}

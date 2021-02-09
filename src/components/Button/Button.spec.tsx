@@ -2,6 +2,8 @@ import * as React from 'react';
 import { render } from '@testing-library/react';
 import Button from './Button';
 
+const HAS_ICON_CLASS = 'btn--has-icon';
+
 describe('Button', () => {
   const buttonText = 'Button Test Text';
 
@@ -12,6 +14,7 @@ describe('Button', () => {
     );
 
     expect(getByText('Before')).toBeInTheDocument();
+    expect(getByText('Before').parentNode).toHaveClass(HAS_ICON_CLASS);
   });
 
   it('renders a before node', () => {
@@ -20,6 +23,7 @@ describe('Button', () => {
     );
 
     expect(getByText('Before')).toBeInTheDocument();
+    expect(getByText('Before').parentNode).toHaveClass(HAS_ICON_CLASS);
   });
 
   it('renders an after component', () => {
@@ -29,6 +33,7 @@ describe('Button', () => {
     );
 
     expect(getByText('After')).toBeInTheDocument();
+    expect(getByText('After').parentNode).toHaveClass(HAS_ICON_CLASS);
   });
 
   it('renders an after node', () => {
@@ -37,5 +42,6 @@ describe('Button', () => {
     );
 
     expect(getByText('After')).toBeInTheDocument();
+    expect(getByText('After').parentNode).toHaveClass(HAS_ICON_CLASS);
   });
 });

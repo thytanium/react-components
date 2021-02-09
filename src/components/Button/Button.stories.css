@@ -4,28 +4,46 @@
   padding: 0.5rem 1rem;
 }
 
-.btn--primary {
+.btn:disabled {
+  color: #ccc !important;
+  cursor: not-allowed;
+}
+
+.btn--default:disabled {
+  background-color: #eee !important;
+}
+
+.btn--has-icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn--has-icon > .feather-loader {
+  margin-right: 8px;
+}
+
+.btn--default.btn--primary {
   background-color: deepskyblue;
   color: white;
 }
 
-.btn--success {
+.btn--default.btn--success {
   background-color: green;
   color: white;
 }
 
-.btn--warning {
+.btn--default.btn--warning {
   background-color: sandybrown;
   color: white;
 }
 
-.btn--danger {
+.btn--default.btn--danger {
   background-color: crimson;
   color: white;
 }
 
 .btn--minimal {
-  background-color: white;
+  background-color: transparent;
 }
 
 .btn--minimal.btn--primary {
@@ -42,4 +60,17 @@
 
 .btn--minimal.btn--danger {
   color: crimson;
+}
+
+.feather-loader {
+  animation: spin 2s linear 0s infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

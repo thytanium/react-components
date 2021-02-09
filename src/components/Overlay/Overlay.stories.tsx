@@ -14,5 +14,5 @@ const Template: Story = args => (
   </OverlayComponent>
 );
 
-export const Overlay = Template.bind({});
-Overlay.args = {};
+export const defaultOverlay = Template.bind({});
+defaultOverlay.args = {};

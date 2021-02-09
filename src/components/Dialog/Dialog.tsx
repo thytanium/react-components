@@ -20,7 +20,12 @@ interface DialogProps {
   hasFooter?: boolean;
   hasHeader?: boolean;
   intent?: Intent;
+  isCancelDisabled?: boolean;
+  isCancelLoading?: boolean;
+  isConfirmDisabled?: boolean;
+  isConfirmLoading?: boolean;
   isShown?: boolean;
+  loadingComponent?: React.ElementType;
   onCancel?: (close: CloseFunction) => void;
   onCloseComplete?: () => void;
   onConfirm?: (close: CloseFunction) => void;
@@ -37,7 +42,12 @@ export default function Dialog({
   hasFooter = true,
   hasHeader = true,
   intent = 'primary',
+  isCancelDisabled = false,
+  isCancelLoading = false,
+  isConfirmDisabled = false,
+  isConfirmLoading = false,
   isShown = false,
+  loadingComponent,
   onCancel = closeHandler,
   onCloseComplete,
   onConfirm = closeHandler,
@@ -78,11 +88,25 @@ export default function Dialog({
       </Modal.Body>
       {hasFooter && (
         <Modal.Footer>
-          <Button intent={intent} onClick={handleConfirmClick}>
+          <Button
+            disabled={isConfirmDisabled}
+            intent={intent}
+            isLoading={isConfirmLoading}
+            loadingComponent={loadingComponent}
+            onClick={handleConfirmClick}
+          >
             {confirmLabel}
           </Button>
           {hasCancel && (
-            <Button onClick={handleCancelClick}>{cancelLabel}</Button>
+            <Button
+              disabled={isCancelDisabled}
+              intent="none"
+              isLoading={isCancelLoading}
+              loadingComponent={loadingComponent}
+              onClick={handleCancelClick}
+            >
+              {cancelLabel}
+            </Button>
           )}
         </Modal.Footer>
       )}

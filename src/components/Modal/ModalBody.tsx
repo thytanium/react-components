@@ -13,7 +13,7 @@ export default function ModalBody({
   return (
     <div
       className={classNames('modal-body', {
-        'modal-body--fixed-height': hasFixedHeight,
+        'modal-body--has-fixed-height': hasFixedHeight,
       })}
     >
       {children}

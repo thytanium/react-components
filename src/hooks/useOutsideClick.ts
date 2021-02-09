@@ -15,9 +15,9 @@ export default function useClickOutside<T extends HTMLElement>(
   );
 
   useEffect(() => {
-    window.addEventListener('click', handleClick);
+    document.body.addEventListener('click', handleClick);
     return (): void => {
-      window.removeEventListener('click', handleClick);
+      document.body.removeEventListener('click', handleClick);
     };
   }, [handleClick]);
 
