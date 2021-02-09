@@ -40,6 +40,6 @@ export default function Modal({
   );
 }
 
-Modal.Body = ModalBody;
-Modal.Header = ModalHeader;
-Modal.Footer = ModalFooter;
+// Modal.Body = ModalBody;
+// Modal.Header = ModalHeader;
+// Modal.Footer = ModalFooter;

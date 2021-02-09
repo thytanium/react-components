@@ -1,0 +1,45 @@
+.btn {
+  border: 0;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+}
+
+.btn--primary {
+  background-color: deepskyblue;
+  color: white;
+}
+
+.btn--success {
+  background-color: green;
+  color: white;
+}
+
+.btn--warning {
+  background-color: sandybrown;
+  color: white;
+}
+
+.btn--danger {
+  background-color: crimson;
+  color: white;
+}
+
+.btn--minimal {
+  background-color: white;
+}
+
+.btn--minimal.btn--primary {
+  color: deepskyblue;
+}
+
+.btn--minimal.btn--success {
+  color: green;
+}
+
+.btn--minimal.btn--warning {
+  color: sandybrown;
+}
+
+.btn--minimal.btn--danger {
+  color: crimson;
+}
