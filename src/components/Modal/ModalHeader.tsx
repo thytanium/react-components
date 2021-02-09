@@ -2,20 +2,20 @@ import * as React from 'react';
 
 interface ModalHeaderProps {
   children?: React.ReactNode;
-  toggle?: () => void;
+  close?: () => void;
 }
 
 export default function ModalHeader({
   children,
-  toggle,
+  close,
 }: ModalHeaderProps): React.ReactElement {
   return (
     <div className="modal-header">
       <div className="modal-header__title">{children}</div>
-      {toggle !== undefined && (
+      {close !== undefined && (
         <button
           className="modal-header__close"
-          onClick={toggle}
+          onClick={close}
           data-testid="t-modal-header__close"
         >
           <svg

@@ -8,13 +8,13 @@ import ModalFooter from './ModalFooter';
 interface ModalProps {
   children?: React.ReactNode;
   isShown?: boolean;
-  toggle?: () => void;
+  close?: () => void;
 }
 
-export default function Modal({
+function Modal({
   children,
   isShown = false,
-  toggle,
+  close,
 }: ModalProps): React.ReactElement | null {
   const renderFn = React.useCallback(
     (params?: { ref: React.RefObject<HTMLDivElement> }) => (
@@ -31,15 +31,17 @@ export default function Modal({
 
   return (
     <Overlay>
-      {toggle === undefined ? (
+      {close === undefined ? (
         renderFn()
       ) : (
-        <ClickOutside<HTMLDivElement> onClick={toggle}>{renderFn}</ClickOutside>
+        <ClickOutside<HTMLDivElement> onClick={close}>{renderFn}</ClickOutside>
       )}
     </Overlay>
   );
 }
 
-// Modal.Body = ModalBody;
-// Modal.Header = ModalHeader;
-// Modal.Footer = ModalFooter;
+Modal.Body = ModalBody;
+Modal.Header = ModalHeader;
+Modal.Footer = ModalFooter;
+
+export default Modal;

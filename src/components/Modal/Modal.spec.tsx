@@ -19,13 +19,13 @@ describe('Modal', () => {
     expect(elem).toHaveClass('modal');
   });
 
-  it('calls toggle callback on outside click', () => {
-    const toggle = jest.fn(() => {
+  it('calls close callback on outside click', () => {
+    const close = jest.fn(() => {
       // empty callback
     });
 
     const { getByText } = render(
-      <Modal isShown toggle={toggle}>
+      <Modal isShown close={close}>
         Test
       </Modal>,
     );
@@ -41,6 +41,6 @@ describe('Modal', () => {
       );
     }
 
-    expect(toggle).toHaveBeenCalled();
+    expect(close).toHaveBeenCalled();
   });
 });

@@ -15,3 +15,6 @@ Primary.args = { intent: 'primary' };
 
 export const Minimal = Template.bind({});
 Minimal.args = { appearance: 'minimal', intent: 'primary' };
+
+export const onClick = Template.bind({});
+onClick.args = { onClick: () => alert('Button clicked!') };

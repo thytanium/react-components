@@ -12,11 +12,11 @@ describe('ModalHeader', () => {
   });
 
   it('shows close button', () => {
-    const toggle = () => {
+    const close = () => {
       // empty callback
     };
     const { getByTestId } = render(
-      <ModalHeader toggle={toggle}>Test</ModalHeader>,
+      <ModalHeader close={close}>Test</ModalHeader>,
     );
 
     expect(getByTestId('t-modal-header__close')).toBeInTheDocument();
