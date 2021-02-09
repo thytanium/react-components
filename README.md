@@ -2,6 +2,28 @@
 
 A set of style-less React components and hooks.
 
+## Roadmap
+
+### Components
+
+- [x] Button
+- [x] Overlay
+- [x] Modal
+- [ ] Dialog
+- [ ] Side Sheet
+- [ ] Dropdown
+- [ ] Navbar
+- [ ] Sidenav
+- [ ] App Layout
+- [ ] Tabnav
+- [ ] Accordion
+- [ ] Card
+- [ ] Table
+- [ ] Input
+- [ ] Pagination
+- [ ] Autocomplete
+- [ ] Masonry
+
 ## Class Names
 
 - **Button**
