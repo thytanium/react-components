@@ -15,4 +15,4 @@ const Template: Story = args => (
 );
 
 export const defaultOverlay = Template.bind({});
-defaultOverlay.args = {};
+defaultOverlay.args = { isShown: true };

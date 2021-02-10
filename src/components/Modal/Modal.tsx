@@ -1,40 +1,38 @@
 import * as React from 'react';
-import Overlay from '../Overlay/Overlay';
-import ClickOutside from '../ClickOutside/ClickOutside';
 import ModalBody from './ModalBody';
 import ModalHeader from './ModalHeader';
 import ModalFooter from './ModalFooter';
+import Overlay from '../Overlay/Overlay';
+import { OverlayChildrenFunctionParams } from '../../types';
 
 interface ModalProps {
-  children?: React.ReactNode;
+  children?:
+    | React.ReactNode
+    | ((params: OverlayChildrenFunctionParams) => React.ReactNode);
   isShown?: boolean;
-  close?: () => void;
+  shouldCloseOnEscPress?: boolean;
+  shouldCloseOnOverlayClick?: boolean;
 }
 
 function Modal({
   children,
   isShown = false,
-  close,
+  shouldCloseOnEscPress = true,
+  shouldCloseOnOverlayClick = true,
 }: ModalProps): React.ReactElement | null {
-  const renderFn = React.useCallback(
-    (params?: { ref: React.RefObject<HTMLDivElement> }) => (
-      <div className="modal" ref={params?.ref}>
-        {children}
-      </div>
-    ),
-    [children],
-  );
-
-  if (isShown === false) {
-    return null;
-  }
-
   return (
-    <Overlay>
-      {close === undefined ? (
-        renderFn()
-      ) : (
-        <ClickOutside<HTMLDivElement> onClick={close}>{renderFn}</ClickOutside>
+    <Overlay
+      isShown={isShown}
+      shouldCloseOnClick={shouldCloseOnOverlayClick}
+      shouldCloseOnEscPress={shouldCloseOnEscPress}
+    >
+      {React.useCallback(
+        overlayState => (
+          <div className="modal">
+            {children instanceof Function ? children(overlayState) : children}
+          </div>
+        ),
+        [children],
       )}
     </Overlay>
   );

@@ -8,8 +8,8 @@ export default {
   component: Modal,
 };
 
-export const defaultModal: Story = () => (
-  <Modal isShown>
+const defaultModalTemplate: Story = args => (
+  <Modal {...args}>
     <Modal.Header>Modal Title</Modal.Header>
     <Modal.Body>
       Donut cupcake danish cake cake marzipan. Cake lollipop bonbon tootsie
@@ -19,10 +19,14 @@ export const defaultModal: Story = () => (
     <Modal.Footer>Modal Footer</Modal.Footer>
   </Modal>
 );
+export const defaultModal = defaultModalTemplate.bind({});
+defaultModal.args = { isShown: true };
 
-export const withCloseButton: Story = () => (
-  <Modal isShown>
-    <Modal.Header close={() => {}}>Modal Title</Modal.Header>
+const withCloseButtonTemplate: Story = args => (
+  <Modal {...args}>
+    <Modal.Header close={() => alert('Clicked on close')}>
+      Modal Title
+    </Modal.Header>
     <Modal.Body>
       Donut cupcake danish cake cake marzipan. Cake lollipop bonbon tootsie
       roll. Danish gummies lemon drops. Cake biscuit sesame snaps cookie candy
@@ -31,9 +35,11 @@ export const withCloseButton: Story = () => (
     <Modal.Footer>Modal Footer</Modal.Footer>
   </Modal>
 );
+export const withCloseButton = withCloseButtonTemplate.bind({});
+withCloseButton.args = { isShown: true };
 
-export const fixedHeightBody: Story = () => (
-  <Modal isShown>
+const fixedHeightBodyTemplate: Story = args => (
+  <Modal {...args}>
     <Modal.Header close={() => {}}>Modal Title</Modal.Header>
     <Modal.Body hasFixedHeight>
       Powder sweet roll biscuit tart jelly cookie sweet roll. Pastry pastry
@@ -44,9 +50,11 @@ export const fixedHeightBody: Story = () => (
     <Modal.Footer>Modal Footer</Modal.Footer>
   </Modal>
 );
+export const fixedHeightBody = fixedHeightBodyTemplate.bind({});
+fixedHeightBody.args = { isShown: true };
 
-export const noFooterNorHeader = () => (
-  <Modal isShown>
+const noFooterNorHeaderTemplate: Story = args => (
+  <Modal {...args}>
     <Modal.Body>
       Gingerbread chocolate cake candy canes biscuit candy canes marshmallow
       candy. Halvah bonbon sugar plum. Biscuit toffee candy carrot cake pudding
@@ -54,3 +62,5 @@ export const noFooterNorHeader = () => (
     </Modal.Body>
   </Modal>
 );
+export const noFooterNorHeader = noFooterNorHeaderTemplate.bind({});
+noFooterNorHeader.args = { isShown: true };

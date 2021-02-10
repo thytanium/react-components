@@ -19,28 +19,10 @@ describe('Modal', () => {
     expect(elem).toHaveClass('modal');
   });
 
-  it('calls close callback on outside click', () => {
-    const close = jest.fn(() => {
-      // empty callback
-    });
-
+  it('accepts a render function', () => {
     const { getByText } = render(
-      <Modal isShown close={close}>
-        Test
-      </Modal>,
+      <Modal isShown>{({ status }) => status && 'Open'}</Modal>,
     );
-
-    const elem = getByText('Test');
-
-    if (elem.parentNode) {
-      fireEvent(
-        elem.parentNode,
-        new MouseEvent('click', {
-          bubbles: true,
-        }),
-      );
-    }
-
-    expect(close).toHaveBeenCalled();
+    expect(getByText('Open')).toBeInTheDocument();
   });
 });

@@ -29,6 +29,7 @@ interface DialogProps {
   onCancel?: (close: CloseFunction) => void;
   onCloseComplete?: () => void;
   onConfirm?: (close: CloseFunction) => void;
+  shouldCloseOnEscPress?: boolean;
   shouldCloseOnOverlayClick?: boolean;
   title?: React.ReactNode;
 }
@@ -49,66 +50,52 @@ export default function Dialog({
   isShown = false,
   loadingComponent,
   onCancel = closeHandler,
-  onCloseComplete,
   onConfirm = closeHandler,
+  shouldCloseOnEscPress = true,
   shouldCloseOnOverlayClick = true,
   title,
 }: DialogProps): React.ReactElement {
-  const [isOpen, setOpen] = React.useState<boolean>(isShown);
-
-  const close = () => {
-    setOpen(false);
-    if (onCloseComplete) {
-      onCloseComplete();
-    }
-  };
-
-  const handleCancelClick = React.useCallback(() => onCancel(close), [
-    onCancel,
-    close,
-  ]);
-
-  const handleConfirmClick = React.useCallback(() => onConfirm(close), [
-    onConfirm,
-    close,
-  ]);
-
   return (
     <Modal
-      isShown={isOpen}
-      close={shouldCloseOnOverlayClick ? close : undefined}
+      isShown={isShown}
+      shouldCloseOnEscPress={shouldCloseOnEscPress}
+      shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
     >
-      {hasHeader && (
-        <Modal.Header close={hasClose ? close : undefined}>
-          {title}
-        </Modal.Header>
-      )}
-      <Modal.Body>
-        {children instanceof Function ? children({ close }) : children}
-      </Modal.Body>
-      {hasFooter && (
-        <Modal.Footer>
-          <Button
-            disabled={isConfirmDisabled}
-            intent={intent}
-            isLoading={isConfirmLoading}
-            loadingComponent={loadingComponent}
-            onClick={handleConfirmClick}
-          >
-            {confirmLabel}
-          </Button>
-          {hasCancel && (
-            <Button
-              disabled={isCancelDisabled}
-              intent="none"
-              isLoading={isCancelLoading}
-              loadingComponent={loadingComponent}
-              onClick={handleCancelClick}
-            >
-              {cancelLabel}
-            </Button>
+      {({ close }) => (
+        <>
+          {hasHeader && (
+            <Modal.Header close={hasClose ? close : undefined}>
+              {title}
+            </Modal.Header>
           )}
-        </Modal.Footer>
+          <Modal.Body>
+            {children instanceof Function ? children({ close }) : children}
+          </Modal.Body>
+          {hasFooter && (
+            <Modal.Footer>
+              <Button
+                disabled={isConfirmDisabled}
+                intent={intent}
+                isLoading={isConfirmLoading}
+                loadingComponent={loadingComponent}
+                onClick={() => onConfirm(close)}
+              >
+                {confirmLabel}
+              </Button>
+              {hasCancel && (
+                <Button
+                  disabled={isCancelDisabled}
+                  intent="none"
+                  isLoading={isCancelLoading}
+                  loadingComponent={loadingComponent}
+                  onClick={() => onCancel(close)}
+                >
+                  {cancelLabel}
+                </Button>
+              )}
+            </Modal.Footer>
+          )}
+        </>
       )}
     </Modal>
   );

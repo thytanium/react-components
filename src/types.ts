@@ -15,3 +15,8 @@ export type IconProps = {
 };
 
 export type Intent = 'none' | 'primary' | 'success' | 'warning' | 'danger';
+
+export interface OverlayChildrenFunctionParams {
+  status: boolean;
+  close: () => void;
+}
