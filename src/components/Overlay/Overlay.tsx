@@ -21,7 +21,9 @@ interface OverlayProps {
   onExiting?: () => void;
   shouldCloseOnClick?: boolean;
   shouldCloseOnEscPress?: boolean;
-  transitionDuration?: number;
+  transitionDuration?:
+    | number
+    | { [key in 'appear' | 'enter' | 'exit']: number };
   transitionStyles?: { [key in TransitionStatus]: React.CSSProperties };
 }
 
