@@ -19,6 +19,11 @@
   transition: transform 300ms ease-in;
 }
 
+.modal-exit-active {
+  transform: scale(0.1) rotate(-45deg);
+  transition: transform 300ms ease-out;
+}
+
 .modal-header {
   padding: 0 16px;
   height: 48px;
