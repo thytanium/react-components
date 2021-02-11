@@ -10,6 +10,7 @@ interface ModalProps {
     | React.ReactNode
     | ((params: OverlayChildrenFunctionParams) => React.ReactNode);
   isShown?: boolean;
+  onCloseComplete?: () => void;
   shouldCloseOnEscPress?: boolean;
   shouldCloseOnOverlayClick?: boolean;
 }
@@ -17,12 +18,14 @@ interface ModalProps {
 function Modal({
   children,
   isShown = false,
+  onCloseComplete,
   shouldCloseOnEscPress = true,
   shouldCloseOnOverlayClick = true,
 }: ModalProps): React.ReactElement | null {
   return (
     <Overlay
       isShown={isShown}
+      onExited={onCloseComplete}
       shouldCloseOnClick={shouldCloseOnOverlayClick}
       shouldCloseOnEscPress={shouldCloseOnEscPress}
     >

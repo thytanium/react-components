@@ -1,4 +1,5 @@
 import { ElementType, ReactNode } from 'react';
+import { TransitionStatus } from 'react-transition-group/Transition';
 
 export type Appearance = 'default' | 'minimal';
 
@@ -17,6 +18,6 @@ export type IconProps = {
 export type Intent = 'none' | 'primary' | 'success' | 'warning' | 'danger';
 
 export interface OverlayChildrenFunctionParams {
-  status: boolean;
+  state: TransitionStatus;
   close: () => void;
 }

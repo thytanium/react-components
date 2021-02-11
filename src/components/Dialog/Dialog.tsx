@@ -50,6 +50,7 @@ export default function Dialog({
   isShown = false,
   loadingComponent,
   onCancel = closeHandler,
+  onCloseComplete,
   onConfirm = closeHandler,
   shouldCloseOnEscPress = true,
   shouldCloseOnOverlayClick = true,
@@ -58,6 +59,7 @@ export default function Dialog({
   return (
     <Modal
       isShown={isShown}
+      onCloseComplete={onCloseComplete}
       shouldCloseOnEscPress={shouldCloseOnEscPress}
       shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
     >

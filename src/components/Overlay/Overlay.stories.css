@@ -7,6 +7,24 @@
   background: hsla(0, 0%, 10%, 0.5);
 }
 
+.overlay-appear {
+  opacity: 0;
+}
+
+.overlay-appear-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+
+.overlay-exit {
+  opacity: 1;
+}
+
+.overlay-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-out;
+}
+
 .overlay__content {
   background-color: white;
 }
