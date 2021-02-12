@@ -2,23 +2,18 @@ import * as React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import Overlay from './Overlay';
 
-function click(container: Element) {
-  fireEvent(
-    container,
-    new MouseEvent('click', {
-      bubbles: true,
-    }),
+jest.mock('react-transition-group', () => {
+  const FakeCSSTransition = jest.fn(props =>
+    props.in ? props.children('entering') : null,
   );
-}
+  return { CSSTransition: FakeCSSTransition };
+});
 
 function pressEsc(container: Element) {
-  fireEvent(
-    container,
-    new KeyboardEvent('keydown', {
-      key: 'Escape',
-      bubbles: true,
-    }),
-  );
+  fireEvent.keyDown(container, {
+    key: 'Escape',
+    bubbles: true,
+  });
 }
 
 describe('Overlay', () => {
@@ -34,7 +29,7 @@ describe('Overlay', () => {
 
   it('closes on click', () => {
     const { getByText, queryByText } = render(<Overlay isShown>test</Overlay>);
-    click(getByText('test'));
+    fireEvent.click(getByText('test'));
     expect(queryByText('test')).toBe(null);
   });
 
@@ -51,7 +46,7 @@ describe('Overlay', () => {
       </Overlay>,
     );
 
-    click(getByText('test'));
+    fireEvent.click(getByText('test'));
     expect(getByText('test')).toBeInTheDocument();
   });
 

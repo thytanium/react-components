@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import Modal from './Modal';
 
 beforeEach(() => {
@@ -21,7 +21,7 @@ describe('Modal', () => {
 
   it('accepts a render function', () => {
     const { getByText } = render(
-      <Modal isShown>{({ status }) => status && 'Open'}</Modal>,
+      <Modal isShown>{({ state }) => state && 'Open'}</Modal>,
     );
     expect(getByText('Open')).toBeInTheDocument();
   });
