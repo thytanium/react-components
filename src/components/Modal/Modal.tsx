@@ -44,7 +44,7 @@ function Modal({
           <CSSTransition
             appear
             classNames="modal"
-            in={isShown}
+            in={isShown && overlayState.state !== 'exiting'}
             timeout={transitionDuration}
             unmountOnExit
           >
