@@ -25,4 +25,33 @@ describe('Modal', () => {
     );
     expect(getByText('Open')).toBeInTheDocument();
   });
+
+  it('passes down transition styles', () => {
+    const { getByText } = render(
+      <Modal
+        isShown
+        transitionStyles={{
+          entering: {
+            opacity: 0,
+          },
+          entered: {
+            opacity: 1,
+          },
+          exiting: {
+            opacity: 0,
+          },
+          exited: {
+            opacity: 0,
+          },
+          unmounted: {
+            opacity: 1,
+          },
+        }}
+      >
+        Test
+      </Modal>,
+    );
+
+    expect(getByText('Test')).toHaveStyle({ opacity: 0 });
+  });
 });

@@ -44,4 +44,12 @@ describe('Button', () => {
     expect(getByText('After')).toBeInTheDocument();
     expect(getByText('After').parentNode).toHaveClass(HAS_ICON_CLASS);
   });
+
+  it('shows a loding icon', () => {
+    const { container } = render(<Button isLoading>Button</Button>);
+
+    expect(
+      container.querySelector('.feather.feather-loader'),
+    ).toBeInTheDocument();
+  });
 });
