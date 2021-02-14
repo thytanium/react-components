@@ -9,7 +9,7 @@ A set of style-less React components and hooks.
 - [x] Button
 - [x] Overlay
 - [x] Modal
-- [ ] Dialog
+- [x] Dialog
 - [ ] Side Sheet
 - [ ] Dropdown
 - [ ] Navbar
