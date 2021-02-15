@@ -25,27 +25,13 @@ describe('ClickOutside component and hook', () => {
   it('fires callback when clicking outside', () => {
     const { getByText } = render(<Component />);
     expect(getByText('My Content')).toBeInTheDocument();
-
-    fireEvent(
-      document.body,
-      new MouseEvent('click', {
-        bubbles: true,
-      }),
-    );
-
+    fireEvent.click(document.body);
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
   it('does not fire callback when clicking inside', () => {
     const { getByText } = render(<Component />);
-
-    fireEvent(
-      getByText('My Content'),
-      new MouseEvent('click', {
-        bubbles: true,
-      }),
-    );
-
+    fireEvent.click(getByText('My Content'));
     expect(onClick).not.toHaveBeenCalled();
   });
 });
