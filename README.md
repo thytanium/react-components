@@ -28,6 +28,7 @@ A set of style-less React components and hooks.
 
 - **Button**
   - `btn`
+  - `btn--default`
   - `btn--minimal`
   - `btn--primary`
   - `btn--secondary`
