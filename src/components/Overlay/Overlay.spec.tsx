@@ -1,6 +1,12 @@
 import * as React from 'react';
+import { CSSTransition } from 'react-transition-group';
 import { fireEvent, render } from '@testing-library/react';
 import Overlay from './Overlay';
+
+jest.mock('react', () => ({
+  ...(jest.requireActual('react') as object),
+  useState: jest.fn(),
+}));
 
 jest.mock('react-transition-group', () => {
   const FakeCSSTransition = jest.fn(props =>
@@ -17,6 +23,12 @@ function pressEsc(container: Element) {
 }
 
 describe('Overlay', () => {
+  beforeEach(() => {
+    (React.useState as jest.Mock).mockImplementation(
+      jest.requireActual('react').useState,
+    );
+  });
+
   it('does not show by default', () => {
     const { queryByText } = render(<Overlay>test</Overlay>);
     expect(queryByText('test')).toBe(null);
@@ -59,5 +71,106 @@ describe('Overlay', () => {
 
     pressEsc(getByText('test'));
     expect(getByText('test')).toBeInTheDocument();
+  });
+
+  it('passes down transition styles', () => {
+    const { getByText } = render(
+      <Overlay
+        isShown
+        transitionStyles={{
+          entering: {
+            opacity: 0,
+          },
+          entered: {
+            opacity: 1,
+          },
+          exiting: {
+            opacity: 0,
+          },
+          exited: {
+            opacity: 0,
+          },
+          unmounted: {
+            opacity: 1,
+          },
+        }}
+      >
+        Test
+      </Overlay>,
+    );
+
+    expect(getByText('Test')).toHaveStyle({ opacity: 0 });
+  });
+});
+
+describe('Overlay callbacks', () => {
+  const setState = jest.fn();
+
+  beforeEach(() => {
+    (React.useState as jest.Mock).mockImplementation(init => [init, setState]);
+    (CSSTransition as jest.Mock).mockImplementation(
+      jest.fn(props => {
+        if (props.onEntering) props.onEntering();
+        if (props.onEntered) props.onEntered();
+        if (props.onExiting) props.onExiting();
+        if (props.onExited) props.onExited();
+
+        return props.in ? props.children('entering') : null;
+      }),
+    );
+  });
+
+  it('calls onEntering cb', () => {
+    const onEntering = jest.fn();
+    render(
+      <Overlay isShown onEntering={onEntering}>
+        Test
+      </Overlay>,
+    );
+    expect(onEntering).toHaveBeenCalledTimes(1);
+  });
+
+  it('calls onEntered cb', () => {
+    const onEntered = jest.fn();
+    render(
+      <Overlay isShown onEntered={onEntered}>
+        Test
+      </Overlay>,
+    );
+    expect(onEntered).toHaveBeenCalledTimes(1);
+  });
+
+  it('calls onExiting cb', () => {
+    const onExiting = jest.fn();
+    render(
+      <Overlay isShown onExiting={onExiting}>
+        Test
+      </Overlay>,
+    );
+    expect(onExiting).toHaveBeenCalledTimes(1);
+  });
+
+  it('calls onExited cb', () => {
+    const onExited = jest.fn();
+    render(
+      <Overlay isShown onExited={onExited}>
+        Test
+      </Overlay>,
+    );
+    expect(onExited).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('Overlay unmounting', () => {
+  beforeEach(() => {
+    (React.useState as jest.Mock).mockImplementation(() => [
+      'exited',
+      jest.fn(),
+    ]);
+  });
+
+  it('unmounts on exited state', () => {
+    const { queryByText } = render(<Overlay>Test</Overlay>);
+    expect(queryByText('Test')).toBeNull();
   });
 });
