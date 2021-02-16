@@ -63,7 +63,7 @@ function Modal({
             )}
           </CSSTransition>
         ),
-        [children, isShown],
+        [children, defaultStyle, transitionDuration, transitionStyles, isShown],
       )}
     </Overlay>
   );

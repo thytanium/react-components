@@ -16,8 +16,8 @@ export default function ModalHeader({
       {close !== undefined && (
         <button
           className="modal-header__close"
-          onClick={close}
           data-testid="t-modal-header__close"
+          onClick={close}
         >
           <CloseIcon />
         </button>

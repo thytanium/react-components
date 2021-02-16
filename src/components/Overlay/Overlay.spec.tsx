@@ -4,7 +4,8 @@ import { fireEvent, render } from '@testing-library/react';
 import Overlay from './Overlay';
 
 jest.mock('react', () => ({
-  ...(jest.requireActual('react') as object),
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ...(jest.requireActual('react') as Record<string, any>),
   useState: jest.fn(),
 }));
 

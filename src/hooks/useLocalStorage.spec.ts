@@ -73,7 +73,7 @@ describe('useLocalStorage hook', () => {
     const [storageValue, setValue] = result.current;
 
     act(() => {
-      setValue(value => {
+      setValue(() => {
         throw new Error('test error');
       });
     });

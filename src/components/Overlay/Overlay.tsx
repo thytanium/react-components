@@ -69,28 +69,28 @@ export default function Overlay({
         close();
       }
     },
-    [shouldCloseOnEscPress],
+    [close, shouldCloseOnEscPress],
   );
 
   const handleEntering = React.useCallback(() => {
     setStatus('entering');
     onEntering();
-  }, [setStatus]);
+  }, [onEntering, setStatus]);
 
   const handleEntered = React.useCallback(() => {
     setStatus('entered');
     onEntered();
-  }, [setStatus]);
+  }, [onEntered, setStatus]);
 
   const handleExiting = React.useCallback(() => {
     setStatus('exiting');
     onExiting();
-  }, [setStatus]);
+  }, [onExiting, setStatus]);
 
   const handleExited = React.useCallback(() => {
     setStatus('exited');
     onExited();
-  }, [setStatus]);
+  }, [onExited, setStatus]);
 
   React.useEffect(() => {
     if (status === 'entering') {
@@ -100,14 +100,11 @@ export default function Overlay({
     if (status === 'exiting') {
       document.body.removeEventListener('keydown', handleEscapeKeyDown, false);
     }
-  }, [status]);
 
-  React.useEffect(
-    () => () => {
+    return () => {
       document.body.removeEventListener('keydown', handleEscapeKeyDown, false);
-    },
-    [],
-  );
+    };
+  }, [handleEscapeKeyDown, status]);
 
   if (status === 'exited') {
     return null;
@@ -129,9 +126,10 @@ export default function Overlay({
             unmountOnExit
           >
             {state => (
-              <div
+              <div // eslint-disable-line jsx-a11y/no-static-element-interactions
                 className="overlay"
                 onClick={handleBackdropClick}
+                onKeyDown={noop}
                 style={{
                   zIndex,
                   ...defaultStyle,

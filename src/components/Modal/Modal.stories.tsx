@@ -40,7 +40,11 @@ withCloseButton.args = { isShown: true };
 
 const fixedHeightBodyTemplate: Story = args => (
   <Modal {...args}>
-    <Modal.Header close={() => {}}>Modal Title</Modal.Header>
+    <Modal.Header close={() => {
+      // empty
+    }}>
+      Modal Title
+    </Modal.Header>
     <Modal.Body hasFixedHeight>
       Powder sweet roll biscuit tart jelly cookie sweet roll. Pastry pastry
       halvah tootsie roll chocolate lollipop biscuit dragée fruitcake. Tootsie

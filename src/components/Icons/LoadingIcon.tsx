@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-sort-props */
 import * as React from 'react';
 import { IconProps } from '../../types';
 import Icon from './Icon';

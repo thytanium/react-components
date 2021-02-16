@@ -28,7 +28,7 @@ export default function useLocalStorage<T>(
         setError(err);
       }
     },
-    [storedValue],
+    [key, storedValue],
   );
 
   return [storedValue, setValue, error];
