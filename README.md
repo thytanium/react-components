@@ -48,13 +48,13 @@ Basically, each component reserves CSS class names that can be styled in any way
   - `overlay`
 - **Modal**
   - `modal`
-- **ModalHeader**
+- **Modal.Header**
   - `modal-header__title`
   - `modal-header__close`
-- **ModalBody**
+- **Modal.Body**
   - `modal-body`
   - `modal-body--fixed-height`
-- **ModalFooter**
+- **Modal.Footer**
   - `modal-footer`
 - **SideSheet**
   - `side-sheet`
