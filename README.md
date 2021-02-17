@@ -10,7 +10,7 @@ A set of style-less React components and hooks.
 - [x] Overlay
 - [x] Modal
 - [x] Dialog
-- [ ] Side Sheet
+- [x] Side Sheet
 - [ ] Dropdown
 - [ ] Navbar
 - [ ] Sidenav
@@ -47,3 +47,9 @@ A set of style-less React components and hooks.
   - `modal-body--fixed-height`
 - **ModalFooter**
   - `modal-footer`
+- **SideSheet**
+  - `side-sheet`
+  - `side-sheet--position-right`
+  - `side-sheet--position-left`
+  - `side-sheet--position-top`
+  - `side-sheet--position-bottom`

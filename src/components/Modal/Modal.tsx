@@ -14,6 +14,7 @@ interface ModalProps {
   defaultStyle?: React.CSSProperties;
   isShown?: boolean;
   onCloseComplete?: () => void;
+  onOpenComplete?: () => void;
   shouldCloseOnEscPress?: boolean;
   shouldCloseOnOverlayClick?: boolean;
   transitionDuration?:
@@ -27,6 +28,7 @@ function Modal({
   defaultStyle,
   isShown = false,
   onCloseComplete,
+  onOpenComplete,
   shouldCloseOnEscPress = true,
   shouldCloseOnOverlayClick = true,
   transitionDuration = 300,
@@ -34,7 +36,13 @@ function Modal({
 }: ModalProps): React.ReactElement | null {
   return (
     <Overlay
+      defaultStyle={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
       isShown={isShown}
+      onEntered={onOpenComplete}
       onExited={onCloseComplete}
       shouldCloseOnClick={shouldCloseOnOverlayClick}
       shouldCloseOnEscPress={shouldCloseOnEscPress}

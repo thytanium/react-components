@@ -1,7 +1,4 @@
 .overlay {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
   height: 100vh;
   background: hsla(0, 0%, 10%, 0.5);
@@ -23,8 +20,4 @@
 .overlay-exit-active {
   opacity: 0;
   transition: opacity 300ms ease-out;
-}
-
-.overlay__content {
-  background-color: white;
 }

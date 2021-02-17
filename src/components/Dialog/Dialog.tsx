@@ -28,6 +28,7 @@ interface DialogProps {
   loadingComponent?: React.ElementType;
   onCancel?: (close: CloseFunction) => void;
   onCloseComplete?: () => void;
+  onOpenComplete?: () => void;
   onConfirm?: (close: CloseFunction) => void;
   shouldCloseOnEscPress?: boolean;
   shouldCloseOnOverlayClick?: boolean;
@@ -51,6 +52,7 @@ export default function Dialog({
   loadingComponent,
   onCancel = closeHandler,
   onCloseComplete,
+  onOpenComplete,
   onConfirm = closeHandler,
   shouldCloseOnEscPress = true,
   shouldCloseOnOverlayClick = true,
@@ -60,6 +62,7 @@ export default function Dialog({
     <Modal
       isShown={isShown}
       onCloseComplete={onCloseComplete}
+      onOpenComplete={onOpenComplete}
       shouldCloseOnEscPress={shouldCloseOnEscPress}
       shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
     >
