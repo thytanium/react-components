@@ -1,6 +1,11 @@
 # @thytanium/react-components
 
-A set of style-less React components and hooks.
+A set of **styleless** React components and hooks.
+
+## Approach
+
+Basically, each component reserves CSS class names that can be styled in any way.
+Or using [`styled-components`](https://www.styled-components.com), ignoring any class name.
 
 ## Roadmap
 
@@ -12,17 +17,21 @@ A set of style-less React components and hooks.
 - [x] Dialog
 - [x] Side Sheet
 - [ ] Dropdown
+- [ ] Nav
+- [ ] Tabnav
+- [ ] Accordion
 - [ ] Navbar
 - [ ] Sidenav
 - [ ] App Layout
-- [ ] Tabnav
-- [ ] Accordion
 - [ ] Card
-- [ ] Table
-- [ ] Input
-- [ ] Pagination
+- [ ] Form
+  - [ ] Input
+  - [ ] TextArea
+  - [ ] Select
+  - [ ] Checkbox
 - [ ] Autocomplete
-- [ ] Masonry
+- [ ] Table
+- [ ] Pagination
 
 ## Class Names
 
