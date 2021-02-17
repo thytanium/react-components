@@ -4,7 +4,10 @@ A set of **styleless** React components and hooks.
 
 ## Approach
 
+The goal is having a CSS-framework-agnostic component library, that could be shared among projects.
+
 Basically, each component reserves CSS class names that can be styled in any way.
+
 Or using [`styled-components`](https://www.styled-components.com), ignoring any class name.
 
 ## Roadmap
