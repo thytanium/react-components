@@ -1,6 +1,6 @@
 # @thytanium/react-components
 
-A set of **styleless** React components and hooks.
+A set of **styleless** React components and hooks. Heavily inspired on [Evergreen UI](https://evergreen.segment.com).
 
 ## Approach
 
