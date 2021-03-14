@@ -1,4 +1,4 @@
-export { default as useOutsideClick } from './useOutsideClick';
+export { default as useClickOutside } from './useClickOutside';
 export { default as useDarkMode } from './useDarkMode';
 export { default as useIsMounted } from './useIsMounted';
 export { default as useLocalStorage } from './useLocalStorage';
