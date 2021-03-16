@@ -10,18 +10,26 @@ export interface ButtonProps
     > {
   appearance?: Appearance;
   intent?: Intent;
+  isLoading?: boolean;
+  loadingComponent?: React.ElementType;
 }
 
 export default function Button({
   afterComponent: AfterComponent,
   afterNode,
+  appearance = 'default',
   beforeComponent: BeforeComponent,
   beforeNode,
   children,
-  appearance = 'default',
   intent = 'none',
+  isLoading = false,
+  loadingComponent: LoadingComponent,
   ...props
 }: ButtonProps): React.ReactElement {
+  if (isLoading && LoadingComponent) {
+    BeforeComponent = LoadingComponent;
+  }
+
   const hasSideElements =
     BeforeComponent !== undefined ||
     AfterComponent !== undefined ||
@@ -45,6 +53,7 @@ export default function Button({
         HTMLButtonElement
       >)}
       {...dataAttributes}
+      disabled={isLoading || props.disabled}
     >
       {BeforeComponent ? <BeforeComponent /> : beforeNode}
       {children}

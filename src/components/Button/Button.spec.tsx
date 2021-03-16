@@ -80,4 +80,18 @@ describe('Button', () => {
       'data-trc-button--has-children',
     );
   });
+
+  it('shows a loading component', () => {
+    const LoadingComponent = () => <>Loading</>;
+    const { container } = render(
+      <Button isLoading loadingComponent={LoadingComponent} />,
+    );
+
+    const element = container.querySelector(
+      'button[data-trc-button][data-trc-button--has-children]',
+    );
+
+    expect(element).toBeInTheDocument();
+    expect(element?.innerHTML).toMatch(/Loading/);
+  });
 });
