@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CSSTransition } from 'react-transition-group';
+import { Transition } from 'react-transition-group';
 import { fireEvent, render } from '@testing-library/react';
 import Overlay from './Overlay';
 
@@ -10,10 +10,10 @@ jest.mock('react', () => ({
 }));
 
 jest.mock('react-transition-group', () => {
-  const FakeCSSTransition = jest.fn(props =>
+  const FakeTransition = jest.fn(props =>
     props.in ? props.children('entering') : null,
   );
-  return { CSSTransition: FakeCSSTransition };
+  return { Transition: FakeTransition };
 });
 
 function pressEsc(container: Element) {
@@ -109,7 +109,7 @@ describe('Overlay callbacks', () => {
 
   beforeEach(() => {
     (React.useState as jest.Mock).mockImplementation(init => [init, setState]);
-    (CSSTransition as jest.Mock).mockImplementation(
+    (Transition as jest.Mock).mockImplementation(
       jest.fn(props => {
         if (props.onEntering) props.onEntering();
         if (props.onEntered) props.onEntered();

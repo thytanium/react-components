@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createPortal } from 'react-dom';
-import { CSSTransition } from 'react-transition-group';
+import { Transition } from 'react-transition-group';
 import { TransitionStatus } from 'react-transition-group/Transition';
 import { OverlayChildrenFunctionParams } from '../../types';
 import Stack from '../Stack/Stack';
@@ -114,9 +114,8 @@ export default function Overlay({
     <Stack>
       {zIndex =>
         createPortal(
-          <CSSTransition
+          <Transition
             appear
-            classNames="overlay"
             in={isShown && status !== 'exiting'}
             onEntered={handleEntered}
             onEntering={handleEntering}
@@ -127,7 +126,8 @@ export default function Overlay({
           >
             {state => (
               <div // eslint-disable-line jsx-a11y/no-static-element-interactions
-                className="overlay"
+                data-trc-overlay=""
+                {...{ [`data-trc-overlay--${state}`]: '' }}
                 onClick={handleBackdropClick}
                 onKeyDown={noop}
                 style={{
@@ -141,7 +141,7 @@ export default function Overlay({
                   : children}
               </div>
             )}
-          </CSSTransition>,
+          </Transition>,
           document.body,
         )
       }
