@@ -10,11 +10,8 @@ export default {
 
 const Template: Story = args => <Button {...args}>Button</Button>;
 
-export const Primary = Template.bind({});
-Primary.args = { intent: 'primary' };
-
-export const Minimal = Template.bind({});
-Minimal.args = { appearance: 'minimal', intent: 'primary' };
+export const button = Template.bind({});
+button.args = { intent: 'primary' };
 
 export const onClick = Template.bind({});
 onClick.args = { onClick: () => alert('Button clicked!') };

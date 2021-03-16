@@ -1,76 +1,50 @@
-.btn {
+[data-trc-button] {
   border: 0;
   border-radius: 0.25rem;
   padding: 0.5rem 1rem;
 }
 
-.btn:disabled {
+[data-trc-button]:disabled {
   color: #ccc !important;
   cursor: not-allowed;
 }
 
-.btn--default:disabled {
-  background-color: #eee !important;
-}
-
-.btn--has-icon {
-  display: inline-flex;
-  align-items: center;
-}
-
-.btn--has-icon > .feather-loader {
-  margin-right: 8px;
-}
-
-.btn--default.btn--primary {
+[data-trc-button--primary] {
   background-color: deepskyblue;
   color: white;
 }
 
-.btn--default.btn--success {
+[data-trc-button--success] {
   background-color: green;
   color: white;
 }
 
-.btn--default.btn--warning {
+[data-trc-button--warning] {
   background-color: sandybrown;
   color: white;
 }
 
-.btn--default.btn--danger {
+[data-trc-button--danger] {
   background-color: crimson;
   color: white;
 }
 
-.btn--minimal {
+[data-trc-button--minimal] {
   background-color: transparent;
 }
 
-.btn--minimal.btn--primary {
+[data-trc-button--minimal][data-trc-button--primary] {
   color: deepskyblue;
 }
 
-.btn--minimal.btn--success {
+[data-trc-button--minimal][data-trc-button--success] {
   color: green;
 }
 
-.btn--minimal.btn--warning {
+[data-trc-button--minimal][data-trc-button--warning] {
   color: sandybrown;
 }
 
-.btn--minimal.btn--danger {
+[data-trc-button--minimal][data-trc-button--danger] {
   color: crimson;
-}
-
-.feather-loader {
-  animation: spin 2s linear 0s infinite;
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
