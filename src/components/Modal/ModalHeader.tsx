@@ -1,21 +1,24 @@
 import * as React from 'react';
-import CloseIcon from '../Icons/CloseIcon';
 
 interface ModalHeaderProps {
   children?: React.ReactNode;
-  close?: () => void;
+  closeComponent?: React.ElementType;
+  closeNode?: React.ReactNode;
+  onClose?: () => void;
 }
 
 export default function ModalHeader({
   children,
-  close,
+  closeComponent: CloseComponent,
+  closeNode,
+  onClose,
 }: ModalHeaderProps): React.ReactElement {
   return (
     <div data-trc-modal-header="">
       <div data-trc-modal-header__title>{children}</div>
-      {close !== undefined && (
-        <button data-trc-modal-header__close="" onClick={close}>
-          <CloseIcon />
+      {onClose !== undefined && (
+        <button data-trc-modal-header__close="" onClick={onClose}>
+          {CloseComponent ? <CloseComponent /> : closeNode}
         </button>
       )}
     </div>

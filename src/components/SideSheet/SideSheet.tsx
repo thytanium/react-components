@@ -3,7 +3,6 @@ import * as classNames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 import { TransitionStatus } from 'react-transition-group/Transition';
 import Overlay from '../Overlay/Overlay';
-import CloseIcon from '../Icons/CloseIcon';
 import { OverlayChildrenFunctionParams } from '../../types';
 
 const positionClassMap: Record<'right' | 'left' | 'top' | 'bottom', string> = {
@@ -17,6 +16,7 @@ interface SideSheetProps {
   children?:
     | React.ReactNode
     | ((params: OverlayChildrenFunctionParams) => React.ReactNode);
+  closeComponent?: React.ElementType;
   defaultStyle?: React.CSSProperties;
   hasClose?: boolean;
   isShown?: boolean;
@@ -33,6 +33,7 @@ interface SideSheetProps {
 
 export default function SideSheet({
   children,
+  closeComponent: CloseComponent,
   defaultStyle,
   hasClose = true,
   isShown = false,
@@ -74,7 +75,7 @@ export default function SideSheet({
                   onClick={overlayState.close}
                   type="button"
                 >
-                  <CloseIcon />
+                  {CloseComponent && <CloseComponent />}
                 </button>
               )}
               <div className="side-sheet__content">

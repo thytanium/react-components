@@ -1,7 +1,6 @@
 export * from './components/Button';
 export * from './components/ClickOutside';
 export * from './components/Dialog';
-export * from './components/Icons';
 export * from './components/Modal';
 export * from './components/Overlay';
 export * from './components/SideSheet';

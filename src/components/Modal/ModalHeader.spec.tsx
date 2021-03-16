@@ -12,11 +12,11 @@ describe('ModalHeader', () => {
   });
 
   it('shows close button', () => {
-    const close = () => {
+    const onClose = () => {
       // empty callback
     };
-    const { container, getByTestId } = render(
-      <ModalHeader close={close}>Test</ModalHeader>,
+    const { container } = render(
+      <ModalHeader onClose={onClose}>Test</ModalHeader>,
     );
 
     expect(
