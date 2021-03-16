@@ -126,8 +126,10 @@ export default function Overlay({
           >
             {state => (
               <div // eslint-disable-line jsx-a11y/no-static-element-interactions
-                data-trc-overlay=""
-                {...{ [`data-trc-overlay--${state}`]: '' }}
+                {...{
+                  'data-trc-overlay': '',
+                  [`data-trc-overlay--${state}`]: '',
+                }}
                 onClick={handleBackdropClick}
                 onKeyDown={noop}
                 style={{

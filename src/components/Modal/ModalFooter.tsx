@@ -7,5 +7,5 @@ interface ModalFooterProps {
 export default function ModalFooter({
   children,
 }: ModalFooterProps): React.ReactElement {
-  return <div className="modal-footer">{children}</div>;
+  return <div data-trc-modal-footer="">{children}</div>;
 }

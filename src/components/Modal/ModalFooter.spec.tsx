@@ -6,6 +6,6 @@ describe('ModalFooter', () => {
   it('shows inner content', () => {
     const { getByText } = render(<ModalFooter>Test</ModalFooter>);
     expect(getByText('Test')).toBeInTheDocument();
-    expect(getByText('Test')).toHaveClass('modal-footer');
+    expect(getByText('Test')).toHaveAttribute('data-trc-modal-footer');
   });
 });

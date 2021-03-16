@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CSSTransition } from 'react-transition-group';
+import { Transition } from 'react-transition-group';
 import { TransitionStatus } from 'react-transition-group/Transition';
 import ModalBody from './ModalBody';
 import ModalHeader from './ModalHeader';
@@ -49,16 +49,15 @@ function Modal({
     >
       {React.useCallback(
         overlayState => (
-          <CSSTransition
+          <Transition
             appear
-            classNames="modal"
             in={isShown && overlayState.state !== 'exiting'}
             timeout={transitionDuration}
             unmountOnExit
           >
             {state => (
               <div
-                className="modal"
+                {...{ 'data-trc-modal': '', [`data-trc-modal--${state}`]: '' }}
                 style={{
                   ...defaultStyle,
                   ...(transitionStyles && transitionStyles[state]),
@@ -69,7 +68,7 @@ function Modal({
                   : children}
               </div>
             )}
-          </CSSTransition>
+          </Transition>
         ),
         [children, defaultStyle, transitionDuration, transitionStyles, isShown],
       )}

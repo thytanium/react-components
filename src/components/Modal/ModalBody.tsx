@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as classNames from 'classnames';
+import { dataAttr } from '../../util';
 
 interface ModalBodyProps {
   children?: React.ReactNode;
@@ -8,13 +8,14 @@ interface ModalBodyProps {
 
 export default function ModalBody({
   children,
-  hasFixedHeight,
+  hasFixedHeight = false,
 }: ModalBodyProps): React.ReactElement {
   return (
     <div
-      className={classNames('modal-body', {
-        'modal-body--has-fixed-height': hasFixedHeight,
-      })}
+      {...{
+        'data-trc-modal-body': '',
+        'data-trc-modal-body--fixed-height': dataAttr(hasFixedHeight),
+      }}
     >
       {children}
     </div>

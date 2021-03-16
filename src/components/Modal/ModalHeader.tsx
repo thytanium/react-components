@@ -11,14 +11,10 @@ export default function ModalHeader({
   close,
 }: ModalHeaderProps): React.ReactElement {
   return (
-    <div className="modal-header">
-      <div className="modal-header__title">{children}</div>
+    <div data-trc-modal-header="">
+      <div data-trc-modal-header__title>{children}</div>
       {close !== undefined && (
-        <button
-          className="modal-header__close"
-          data-testid="t-modal-header__close"
-          onClick={close}
-        >
+        <button data-trc-modal-header__close="" onClick={close}>
           <CloseIcon />
         </button>
       )}
