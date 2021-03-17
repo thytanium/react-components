@@ -16,8 +16,8 @@ describe('SideSheet', () => {
     const { getByText } = render(<SideSheet isShown>Test</SideSheet>);
     const elem = getByText('Test');
     expect(elem).toBeInTheDocument();
-    expect(elem).toHaveClass('side-sheet__content');
-    expect(elem.parentNode).toHaveClass('side-sheet');
+    expect(elem).toHaveAttribute('data-trc-side-sheet__content');
+    expect(elem.parentNode).toHaveAttribute('data-trc-side-sheet');
   });
 
   it('accepts a render function', () => {
@@ -70,13 +70,11 @@ describe('SideSheet positioning', () => {
           Test
         </SideSheet>,
       );
-      expect(getByText('Test').parentNode).toHaveClass(
-        [
-          'side-sheet',
-          `side-sheet--position-${position}`,
-          'side-sheet-appear',
-          'side-sheet-appear-active',
-        ].join(' '),
+      expect(getByText('Test').parentNode).toHaveAttribute(
+        `data-trc-side-sheet--position-${position}`,
+      );
+      expect(getByText('Test').parentNode).toHaveAttribute(
+        'data-trc-side-sheet--entering',
       );
     });
   });
