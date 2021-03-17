@@ -1,22 +1,14 @@
 import * as React from 'react';
-import * as classNames from 'classnames';
-import { CSSTransition } from 'react-transition-group';
+import { Transition } from 'react-transition-group';
 import { TransitionStatus } from 'react-transition-group/Transition';
 import Overlay from '../Overlay/Overlay';
-import CloseIcon from '../Icons/CloseIcon';
 import { OverlayChildrenFunctionParams } from '../../types';
-
-const positionClassMap: Record<'right' | 'left' | 'top' | 'bottom', string> = {
-  right: 'side-sheet--position-right',
-  left: 'side-sheet--position-left',
-  top: 'side-sheet--position-top',
-  bottom: 'side-sheet--position-bottom',
-};
 
 interface SideSheetProps {
   children?:
     | React.ReactNode
     | ((params: OverlayChildrenFunctionParams) => React.ReactNode);
+  closeComponent?: React.ElementType;
   defaultStyle?: React.CSSProperties;
   hasClose?: boolean;
   isShown?: boolean;
@@ -33,6 +25,7 @@ interface SideSheetProps {
 
 export default function SideSheet({
   children,
+  closeComponent: CloseComponent,
   defaultStyle,
   hasClose = true,
   isShown = false,
@@ -53,16 +46,19 @@ export default function SideSheet({
       shouldCloseOnEscPress={shouldCloseOnEscPress}
     >
       {overlayState => (
-        <CSSTransition
+        <Transition
           appear
-          classNames="side-sheet"
           in={isShown && overlayState.state !== 'exiting'}
           timeout={transitionDuration}
           unmountOnExit
         >
           {state => (
             <div
-              className={classNames('side-sheet', positionClassMap[position])}
+              {...{
+                'data-trc-side-sheet': '',
+                [`data-trc-side-sheet--${state}`]: '',
+                [`data-trc-side-sheet--position-${position}`]: '',
+              }}
               style={{
                 ...defaultStyle,
                 ...(transitionStyles && transitionStyles[state]),
@@ -70,21 +66,21 @@ export default function SideSheet({
             >
               {hasClose && (
                 <button
-                  className="side-sheet__close"
+                  data-trc-side-sheet__close=""
                   onClick={overlayState.close}
                   type="button"
                 >
-                  <CloseIcon />
+                  {CloseComponent && <CloseComponent />}
                 </button>
               )}
-              <div className="side-sheet__content">
+              <div data-trc-side-sheet__content>
                 {children instanceof Function
                   ? children(overlayState)
                   : children}
               </div>
             </div>
           )}
-        </CSSTransition>
+        </Transition>
       )}
     </Overlay>
   );

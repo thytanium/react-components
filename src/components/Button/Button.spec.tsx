@@ -2,10 +2,38 @@ import * as React from 'react';
 import { render } from '@testing-library/react';
 import Button from './Button';
 
-const HAS_ICON_CLASS = 'btn--has-icon';
-
 describe('Button', () => {
   const buttonText = 'Button Test Text';
+
+  it('shows content', () => {
+    const { getByText } = render(<Button>Click Me</Button>);
+    expect(getByText('Click Me')).toBeInTheDocument();
+  });
+
+  it('toggles primary intent', () => {
+    const { getByText } = render(<Button intent="primary">Button</Button>);
+    expect(getByText('Button')).toHaveAttribute('data-trc-button--primary');
+  });
+
+  it('toggles success intent', () => {
+    const { getByText } = render(<Button intent="success">Button</Button>);
+    expect(getByText('Button')).toHaveAttribute('data-trc-button--success');
+  });
+
+  it('toggles warning intent', () => {
+    const { getByText } = render(<Button intent="warning">Button</Button>);
+    expect(getByText('Button')).toHaveAttribute('data-trc-button--warning');
+  });
+
+  it('toggles danger intent', () => {
+    const { getByText } = render(<Button intent="danger">Button</Button>);
+    expect(getByText('Button')).toHaveAttribute('data-trc-button--danger');
+  });
+
+  it('toggles minimal appearance', () => {
+    const { getByText } = render(<Button appearance="minimal">Button</Button>);
+    expect(getByText('Button')).toHaveAttribute('data-trc-button--minimal');
+  });
 
   it('renders a before component', () => {
     const BeforeComponent = (): React.ReactElement => <span>Before</span>;
@@ -14,7 +42,9 @@ describe('Button', () => {
     );
 
     expect(getByText('Before')).toBeInTheDocument();
-    expect(getByText('Before').parentNode).toHaveClass(HAS_ICON_CLASS);
+    expect(getByText('Before').parentNode).toHaveAttribute(
+      'data-trc-button--has-children',
+    );
   });
 
   it('renders a before node', () => {
@@ -23,7 +53,9 @@ describe('Button', () => {
     );
 
     expect(getByText('Before')).toBeInTheDocument();
-    expect(getByText('Before').parentNode).toHaveClass(HAS_ICON_CLASS);
+    expect(getByText('Before').parentNode).toHaveAttribute(
+      'data-trc-button--has-children',
+    );
   });
 
   it('renders an after component', () => {
@@ -33,7 +65,9 @@ describe('Button', () => {
     );
 
     expect(getByText('After')).toBeInTheDocument();
-    expect(getByText('After').parentNode).toHaveClass(HAS_ICON_CLASS);
+    expect(getByText('After').parentNode).toHaveAttribute(
+      'data-trc-button--has-children',
+    );
   });
 
   it('renders an after node', () => {
@@ -42,14 +76,22 @@ describe('Button', () => {
     );
 
     expect(getByText('After')).toBeInTheDocument();
-    expect(getByText('After').parentNode).toHaveClass(HAS_ICON_CLASS);
+    expect(getByText('After').parentNode).toHaveAttribute(
+      'data-trc-button--has-children',
+    );
   });
 
-  it('shows a loding icon', () => {
-    const { container } = render(<Button isLoading>Button</Button>);
+  it('shows a loading component', () => {
+    const LoadingComponent = () => <>Loading</>;
+    const { container } = render(
+      <Button isLoading loadingComponent={LoadingComponent} />,
+    );
 
-    expect(
-      container.querySelector('.feather.feather-loader'),
-    ).toBeInTheDocument();
+    const element = container.querySelector(
+      'button[data-trc-button][data-trc-button--has-children]',
+    );
+
+    expect(element).toBeInTheDocument();
+    expect(element?.innerHTML).toMatch(/Loading/);
   });
 });

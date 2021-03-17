@@ -14,8 +14,13 @@ const Template: Story = args => (
   </Dialog>
 );
 
+function CloseX() {
+  return <span>X</span>;
+}
+
 export const defaultDialog = Template.bind({});
 defaultDialog.args = {
   isShown: true,
   title: 'Example Dialog',
+  closeComponent: CloseX,
 };

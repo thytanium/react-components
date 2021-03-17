@@ -5,7 +5,7 @@ interface DropdownItemProps {
   component?: React.ElementType;
 }
 
-export default function DropdownItem<ComponentPropsType>({
+export default function DropdownItem({
   children,
   component: Component = 'button',
 }: DropdownItemProps): React.ReactElement {

@@ -3,7 +3,7 @@ import Button from '../Button/Button';
 import DropdownItem from './DropdownItem';
 import DropdownMenu from './DropdownMenu';
 
-function Dropdown() {
+function Dropdown(): React.ReactElement {
   return (
     <div className="dropdown">
       <Button>Dropdown</Button>

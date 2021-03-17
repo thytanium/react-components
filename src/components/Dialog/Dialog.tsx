@@ -14,6 +14,7 @@ interface DialogProps {
   children?:
     | React.ReactNode
     | (({ close }: { close: CloseFunction }) => React.ReactNode);
+  closeComponent?: React.ElementType;
   confirmLabel?: string;
   hasCancel?: boolean;
   hasClose?: boolean;
@@ -38,6 +39,7 @@ interface DialogProps {
 export default function Dialog({
   cancelLabel = 'Cancel',
   children,
+  closeComponent,
   confirmLabel = 'Confirm',
   hasCancel = true,
   hasClose = true,
@@ -69,7 +71,10 @@ export default function Dialog({
       {({ close }) => (
         <>
           {hasHeader && (
-            <Modal.Header close={hasClose ? close : undefined}>
+            <Modal.Header
+              closeComponent={closeComponent}
+              onClose={hasClose ? close : undefined}
+            >
               {title}
             </Modal.Header>
           )}

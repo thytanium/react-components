@@ -10,5 +10,9 @@ export default {
 
 const Template: Story = args => <SideSheet {...args}>Side Sheet</SideSheet>;
 
+function CloseX() {
+  return <span>X</span>;
+}
+
 export const defaultSideSheet = Template.bind({});
-defaultSideSheet.args = { isShown: true };
+defaultSideSheet.args = { isShown: true, closeComponent: CloseX };

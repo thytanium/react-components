@@ -24,7 +24,7 @@ defaultModal.args = { isShown: true };
 
 const withCloseButtonTemplate: Story = args => (
   <Modal {...args}>
-    <Modal.Header close={() => alert('Clicked on close')}>
+    <Modal.Header onClose={() => alert('Clicked on close')}>
       Modal Title
     </Modal.Header>
     <Modal.Body>
@@ -40,9 +40,11 @@ withCloseButton.args = { isShown: true };
 
 const fixedHeightBodyTemplate: Story = args => (
   <Modal {...args}>
-    <Modal.Header close={() => {
-      // empty
-    }}>
+    <Modal.Header
+      onClose={() => {
+        // empty
+      }}
+    >
       Modal Title
     </Modal.Header>
     <Modal.Body hasFixedHeight>

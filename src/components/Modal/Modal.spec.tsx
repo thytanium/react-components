@@ -16,7 +16,7 @@ describe('Modal', () => {
     const { getByText } = render(<Modal isShown>Test</Modal>);
     const elem = getByText('Test');
     expect(elem).toBeInTheDocument();
-    expect(elem).toHaveClass('modal');
+    expect(elem).toHaveAttribute('data-trc-modal');
   });
 
   it('accepts a render function', () => {

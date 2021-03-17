@@ -1,20 +1,6 @@
 import * as React from 'react';
-import * as classNames from 'classnames';
+import { dataAttr } from '../../util';
 import { Appearance, BeforeAfterProps, Intent } from '../../types';
-import LoadingIcon from '../Icons/LoadingIcon';
-
-const appearanceClassMap: Record<Appearance, string> = {
-  default: 'btn--default',
-  minimal: 'btn--minimal',
-};
-
-const intentClassMap: Record<Intent, string> = {
-  none: '',
-  primary: 'btn--primary',
-  success: 'btn--success',
-  warning: 'btn--warning',
-  danger: 'btn--danger',
-};
 
 export interface ButtonProps
   extends BeforeAfterProps,
@@ -23,26 +9,42 @@ export interface ButtonProps
       HTMLButtonElement
     > {
   appearance?: Appearance;
-  isLoading?: boolean;
   intent?: Intent;
+  isLoading?: boolean;
   loadingComponent?: React.ElementType;
 }
 
 export default function Button({
   afterComponent: AfterComponent,
   afterNode,
+  appearance = 'default',
   beforeComponent: BeforeComponent,
   beforeNode,
   children,
-  appearance = 'default',
-  isLoading = false,
   intent = 'none',
+  isLoading = false,
   loadingComponent: LoadingComponent,
   ...props
 }: ButtonProps): React.ReactElement {
-  if (isLoading) {
-    BeforeComponent = LoadingComponent || LoadingIcon;
+  if (isLoading && LoadingComponent) {
+    BeforeComponent = LoadingComponent;
   }
+
+  const hasSideElements =
+    BeforeComponent !== undefined ||
+    AfterComponent !== undefined ||
+    beforeNode !== undefined ||
+    afterNode !== undefined;
+
+  const dataAttributes = {
+    'data-trc-button': '',
+    'data-trc-button--minimal': dataAttr(appearance === 'minimal'),
+    'data-trc-button--primary': dataAttr(intent === 'primary'),
+    'data-trc-button--success': dataAttr(intent === 'success'),
+    'data-trc-button--warning': dataAttr(intent === 'warning'),
+    'data-trc-button--danger': dataAttr(intent === 'danger'),
+    'data-trc-button--has-children': dataAttr(hasSideElements),
+  };
 
   return (
     <button
@@ -50,18 +52,7 @@ export default function Button({
         React.ButtonHTMLAttributes<HTMLButtonElement>,
         HTMLButtonElement
       >)}
-      className={classNames(
-        'btn',
-        {
-          'btn--has-icon':
-            BeforeComponent !== undefined ||
-            beforeNode !== undefined ||
-            AfterComponent !== undefined ||
-            afterNode !== undefined,
-        },
-        appearanceClassMap[appearance],
-        intentClassMap[intent],
-      )}
+      {...dataAttributes}
       disabled={isLoading || props.disabled}
     >
       {BeforeComponent ? <BeforeComponent /> : beforeNode}
