@@ -7,6 +7,6 @@ export default {
   component: Dropdown,
 };
 
-const template: Story = args => <Dropdown></Dropdown>;
+const template: Story = () => <Dropdown></Dropdown>;
 
 export const defaultDropdown = template.bind({});

@@ -1,3 +1,3 @@
-export function dataAttr(condition: boolean) {
+export function dataAttr(condition: boolean): '' | undefined {
   return condition ? '' : undefined;
 }
